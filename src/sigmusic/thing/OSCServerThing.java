@@ -1,5 +1,6 @@
 package sigmusic.thing;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
@@ -42,8 +43,14 @@ public class OSCServerThing {
 	}
 	
 	public void sendPitch(float pitch) {
-		System.out.println("Sending pitch " + pitch);
 		OSCMessage routeMessage = new OSCMessage(pitchRoute);
 		routeMessage.addArgument(pitch);
+		try {
+			server.send(routeMessage);
+			System.out.println("Sent pitch " + pitch);
+		} catch (IOException e) {
+			System.out.println("Failed while sending");
+			e.printStackTrace();
+		}
 	}
 }

@@ -1,4 +1,4 @@
-#N canvas 461 345 654 424 10;
+#N canvas 985 493 654 424 10;
 #X declare -lib mrpeach;
 #N canvas 1282 228 310 277 sine 1;
 #X obj 49 32 inlet;
@@ -73,7 +73,7 @@
 #X connect 4 0 2 0;
 #X connect 5 0 6 0;
 #X connect 6 0 4 0;
-#X restore 236 151 pd square;
+#X restore 235 153 pd square;
 #N canvas 840 187 450 300 pulse 0;
 #X obj 71 50 inlet;
 #X obj 191 56 inlet;
@@ -93,22 +93,22 @@
 #X connect 7 0 8 0;
 #X connect 8 0 4 0;
 #X restore 124 151 pd pulse;
-#X obj 42 39 hsl 128 15 0 127 0 0 empty empty pitch -2 -8 0 10 -262144
--1 -1 0 1;
+#X obj 52 32 hsl 128 15 0 127 0 0 empty empty pitch -2 -8 0 10 -262144
+-1 -1 6700 1;
 #X obj 214 42 hsl 100 15 1 100 0 0 empty empty volume -2 -8 0 10 -262144
--1 -1 0 1;
+-1 -1 2500 1;
 #X floatatom 139 82 5 0 0 0 - - -;
 #X floatatom 186 82 5 0 0 0 - - -;
 #X obj 349 246 tabwrite~ output;
 #N canvas 0 0 450 300 (subpatch) 0;
 #X array output 100 float 3;
-#A 0 0.16 0.16 0.16 0.16 0.16 0.16 0.16 0.16 0.16 0.16 0.16 0.16 0.16
-0.16 0.16 0.16 0.16 0.16 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0;
 #X coords 0 1 99 -1 200 140 1;
 #X restore 401 28 graph;
-#X obj 396 203 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 396 203 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 363 224 metro 100;
 #X obj 170 336 dac~;
