@@ -6,6 +6,8 @@ import java.awt.Toolkit;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PVector;
+import sigmusic.thing.debug.DebugOverlay;
+import sigmusic.thing.theremin.ThereminThing;
 
 import com.leapmotion.leap.Finger;
 import com.onformative.leap.LeapMotionP5;
@@ -16,12 +18,19 @@ public class ProcessingThing extends PApplet {
 	 * Generated
 	 */
 	private static final long serialVersionUID = 3183795322040170994L;
-	private static final int MIDI_RANGE = 127;
+	public static final int MIDI_HI = 96;
+	public static final int MIDI_LO = 24;
+	public static final int MIDI_RANGE = MIDI_HI - MIDI_LO;
+	public static final int OCTAVES = ProcessingThing.MIDI_RANGE/12;
 	private int screenWidth;
 	private int screenHeight;
 	private static int port;
 	private static OSCServerThing server;
 	private Finger currFinger;
+	private boolean displayDebug = false;
+	private boolean displayTheremin = true;
+	private DebugOverlay debug;
+	private ThereminThing theremin;
 	
 	private static LeapMotionP5 leap;
 	
@@ -42,6 +51,9 @@ public class ProcessingThing extends PApplet {
 		this.size(screenWidth, screenHeight);
 
 		leap = new LeapMotionP5(this);
+		debug = new DebugOverlay(this);
+		theremin = new ThereminThing(this);
+		
 		this.ellipseMode(PConstants.CENTER);
 	}
 
@@ -50,6 +62,16 @@ public class ProcessingThing extends PApplet {
 		background(0);
 		fill(255);
 		boolean fingerFound = false;
+		
+		if(displayTheremin) {
+			theremin.draw();
+		}
+		
+		if(displayDebug) {
+			debug.draw();
+		}
+		
+		
 		
 		if(!leap.getFingerList().isEmpty()) {
 			fingerFound = true;
@@ -65,21 +87,22 @@ public class ProcessingThing extends PApplet {
 	
 	@Override
 	public void keyPressed() {
-		if(this.key == PConstants.ESC) {
-			int i = 0;
-			i++;
+		if(key == 'd' || key == 'D') {
+			displayDebug = !displayDebug;
+		}
+		else if(keyCode == PConstants.ESC) {
+			this.exit();
 		}
 	}
 	
 	@Override
 	public void stop() {
-		super.stop();
 		leap.stop();
 	}
 	
 	public float normalizePitch(float y) {
 		y = screenHeight - y;
-		y = (((float)MIDI_RANGE)/screenHeight)*y;
+		y = ((((float)MIDI_RANGE)/screenHeight)*y) + MIDI_LO;
 		return y;
 	}
 }

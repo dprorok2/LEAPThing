@@ -12,7 +12,7 @@ public class OSCServerThing {
 	private int port;
 	private InetAddress address;
 	private OSCPortOut server;
-	public static String pitchRoute = "/pitch";
+	private static String pitchRoute = "/pitch";
 	
 	/**
 	 * 
