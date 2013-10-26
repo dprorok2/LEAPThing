@@ -18,6 +18,7 @@ public class ProcessingThing extends PApplet {
 	 * Generated
 	 */
 	private static final long serialVersionUID = 3183795322040170994L;
+	
 	public static final int MIDI_HI = 96;
 	public static final int MIDI_LO = 24;
 	public static final int MIDI_RANGE = MIDI_HI - MIDI_LO;
@@ -31,7 +32,6 @@ public class ProcessingThing extends PApplet {
 	private boolean displayTheremin = true;
 	private DebugOverlay debug;
 	private ThereminThing theremin;
-	
 	private static LeapMotionP5 leap;
 	
 	public static void main(String args[]) {
@@ -51,7 +51,7 @@ public class ProcessingThing extends PApplet {
 		this.size(screenWidth, screenHeight);
 
 		leap = new LeapMotionP5(this);
-		debug = new DebugOverlay(this);
+		debug = new DebugOverlay(this, leap);
 		theremin = new ThereminThing(this);
 		
 		this.ellipseMode(PConstants.CENTER);
@@ -71,8 +71,6 @@ public class ProcessingThing extends PApplet {
 			debug.draw();
 		}
 		
-		
-		
 		if(!leap.getFingerList().isEmpty()) {
 			fingerFound = true;
 			currFinger = leap.getFingerList().get(0);
@@ -83,6 +81,7 @@ public class ProcessingThing extends PApplet {
 			this.ellipse(tip.x, tip.y, 10, 10);
 			server.sendPitch(normalizePitch(tip.y));
 		}
+		
 	}
 	
 	@Override
