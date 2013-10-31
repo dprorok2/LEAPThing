@@ -1,7 +1,6 @@
 package sigmusic.thing.theremin;
 
 import java.awt.Color;
-
 import sigmusic.color.RandomColorEaserLooper;
 import sigmusic.thing.ProcessingThing;
 import sigmusic.thing.interfaces.IDrawableThing;
@@ -12,8 +11,9 @@ public class ThereminThing implements IDrawableThing{
 	private int height;
 	private int lengthLim;
 	private Laser[] lasers;
-	private final int numLasers=5;
+	private final int numLasers=8;
 	
+
 	public ThereminThing(ProcessingThing p) {
 		pt = p;
 		height = p.displayHeight;
@@ -21,7 +21,8 @@ public class ThereminThing implements IDrawableThing{
 		lasers = new Laser[numLasers];
 		for(int i=0; i<numLasers;i++)
 		{
-			lasers[i]= new Laser((int)((i+.5)*pt.displayWidth/numLasers), lengthLim, (int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
+			lasers[i]= new Laser((int)((i+.5)*pt.displayWidth/numLasers), lengthLim, 
+			(int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
 		}
 
 	}
@@ -29,6 +30,7 @@ public class ThereminThing implements IDrawableThing{
 	public void drawLaser(Laser l){
 		pt.stroke(l.getR(),l.getG(),l.getB(), 175);
 		pt.fill(l.getR(),l.getG(),l.getB(), 175);
+
 		if(l.length()<lengthLim)
 		{
 		int dx=(int)(Math.random()*l.width()-l.width()/2);
@@ -44,7 +46,6 @@ public class ThereminThing implements IDrawableThing{
 				p.setY(height);
 				p.invisible=false;
 			}
-			//(Math.abs(p.getY()-pt.mouseY)<30)
 			if(p.getY()-pt.mouseY<15&&p.getY()-pt.mouseY>-50&&(Math.abs(p.getX()-pt.mouseX)<50))
 				p.invisible=true;
 			
@@ -60,6 +61,22 @@ public class ThereminThing implements IDrawableThing{
 		for (int i=0; i<numLasers;i++)
 		{
 			drawLaser(lasers[i]);
+		}
+		for (int i=0; i<numLasers;i++)
+		{
+			if(i%2==0)
+			{
+				pt.stroke(218,165,32);
+				pt.fill(218,165,32);
+			}
+			else
+			{
+				pt.stroke(227, 228, 229);
+				pt.fill(227, 228, 229);
+			}
+//			pt.stroke(255-lasers[i].getR(), 255-lasers[i].getG(), 255-lasers[i].getB());
+//			pt.fill(255-lasers[i].getR(), 255-lasers[i].getG(), 255-lasers[i].getB());
+			pt.rect(lasers[i].location()-lasers[i].width()/2-10, height-100, lasers[i].width()+20, 100);
 		}
 	}
 	
