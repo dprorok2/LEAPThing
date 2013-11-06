@@ -47,7 +47,7 @@ public class OSCServerThing {
 		routeMessage.addArgument(pitch);
 		try {
 			server.send(routeMessage);
-			System.out.println("Sent pitch " + pitch);
+			//System.out.println("Sent pitch " + pitch);
 		} catch (IOException e) {
 			System.out.println("Failed while sending");
 			e.printStackTrace();

@@ -6,6 +6,7 @@ public class Laser {
 	private int length, location;
 	private final int width = 50;
 	private int r,g,b; //color components
+	private String note;
 	
 	public Laser(int location, int lengthLim, int red, int green, int blue){
 		laser = new Photon[lengthLim];
@@ -14,12 +15,18 @@ public class Laser {
 		g=green;
 		b = blue;
 	}
-	
 
 	public void setLaser(Photon[] laser) {
 		this.laser = laser;
 	}
-
+	public void setNote(char c)
+	{
+		note=""+c;
+	}
+	public String getNote()
+	{
+		return note;
+	}
 	public int location() {
 		return location;
 	}

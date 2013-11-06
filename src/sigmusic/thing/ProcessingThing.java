@@ -26,7 +26,7 @@ public class ProcessingThing extends PApplet {
 	private int screenWidth;
 	private int screenHeight;
 	private static int port;
-	private static OSCServerThing server;
+	public static OSCServerThing server;
 	private Finger currFinger;
 	private boolean displayDebug = false;
 	private boolean displayTheremin = true;
@@ -90,6 +90,7 @@ public class ProcessingThing extends PApplet {
 			displayDebug = !displayDebug;
 		}
 		else if(keyCode == PConstants.ESC) {
+			ProcessingThing.server.sendPitch(0);
 			this.exit();
 		}
 	}
