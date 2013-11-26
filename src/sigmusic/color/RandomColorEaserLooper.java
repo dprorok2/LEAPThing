@@ -1,7 +1,9 @@
 package sigmusic.color;
 
+
 import java.awt.Color;
 import java.util.Random;
+
 
 public class RandomColorEaserLooper {
 	private final Random generator = new Random(System.currentTimeMillis());

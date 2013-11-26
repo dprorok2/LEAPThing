@@ -1,5 +1,6 @@
 package sigmusic.color;
 
+
 import java.awt.Color;
 
 public class ColorEaserLooper {

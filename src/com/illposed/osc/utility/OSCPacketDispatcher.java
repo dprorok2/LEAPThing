@@ -1,3 +1,4 @@
+package com.illposed.osc.utility;
 /*
  * Copyright (C) 2003, C. Ramakrishnan / Auracle.
  * All rights reserved.
@@ -6,17 +7,14 @@
  * See file LICENSE (or LICENSE.html) for more information.
  */
 
-package com.illposed.osc.utility;
+
+
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.illposed.osc.OSCBundle;
-import com.illposed.osc.OSCListener;
-import com.illposed.osc.OSCMessage;
-import com.illposed.osc.OSCPacket;
 
 /**
  * Dispatches OSCMessages to registered listeners.

@@ -1,3 +1,4 @@
+package com.illposed.osc.utility;
 /*
  * Copyright (C) 2003-2006, C. Ramakrishnan / Illposed Software.
  * All rights reserved.
@@ -6,7 +7,7 @@
  * See file LICENSE (or LICENSE.html) for more information.
  */
 
-package com.illposed.osc.utility;
+
 
 import java.io.IOException;
 import java.io.ByteArrayOutputStream;

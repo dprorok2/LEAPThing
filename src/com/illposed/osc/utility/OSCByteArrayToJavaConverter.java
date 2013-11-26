@@ -1,3 +1,4 @@
+package com.illposed.osc.utility;
 /*
  * Copyright (C) 2004-2006, C. Ramakrishnan / Illposed Software.
  * All rights reserved.
@@ -6,16 +7,14 @@
  * See file LICENSE (or LICENSE.html) for more information.
  */
 
-package com.illposed.osc.utility;
+
+
 
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.illposed.osc.OSCBundle;
-import com.illposed.osc.OSCMessage;
-import com.illposed.osc.OSCPacket;
 
 /**
  * Utility class to convert a byte array,
