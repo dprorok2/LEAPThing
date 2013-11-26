@@ -1,4 +1,4 @@
-package sigmusic.thing.LeapHarp;
+
 
 
 
@@ -6,7 +6,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import processing.core.PVector;
-import sigmusic.color.RandomColorEaserLooper;
 
 import com.leapmotion.leap.Vector;
 

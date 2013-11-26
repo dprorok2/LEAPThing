@@ -1,4 +1,4 @@
-package sigmusic.color;
+
 
 
 import java.awt.Color;

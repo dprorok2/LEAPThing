@@ -1,4 +1,4 @@
-package sigmusic.thing.LeapHarp;
+
 
 
 import java.awt.Dimension;
@@ -25,7 +25,7 @@ public class Processor extends PApplet {
 	public static void main(String args[]) {
 		System.loadLibrary("LeapJava");
 		PApplet.main(new String[] { "--present",
-		"sigmusic.thing.LeapHarp.Processor" });
+		"Processor" });
 	}
 
 	@Override

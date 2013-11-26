@@ -1,38 +1,43 @@
-package sigmusic.thing;
+
+
+
 
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
-import com.illposed.osc.OSCMessage;
-import com.illposed.osc.OSCPortOut;
+import com.illposed.osc.utility.OSCBundle;
+import com.illposed.osc.utility.OSCMessage;
+import com.illposed.osc.utility.OSCPortOut;
 
-public class OSCServerThing {
+
+public class OSCServer {
 	private int port;
 	private InetAddress address;
 	private OSCPortOut server;
 	private static String pitchRoute = "/pitch";
+	private static String volumeRoute = "/volume";
+	public int pitch;
 	
 	/**
 	 * 
 	 * @param p
 	 *            The port to listen on
-	 * @param address
+	 * @param a
 	 *            The address, pass "" for localhost
 	 */
-	public OSCServerThing(int p, String a) {
+	public OSCServer(int p, String a) {
 		port = p;
-		String addressStr = a;
 		try {
-			if (addressStr.compareTo("") == 0) {
+			if (a.equals("")) {
 				address = InetAddress.getLocalHost();
 			} else {
-				InetAddress.getByName(addressStr);
+				address=InetAddress.getByName(a);
 			}
 			
 			server = new OSCPortOut(address, port);
-			System.out.println("Listening on " + addressStr + ":" + port);
+			System.out.println("Listening on " + a + ":" + port);
 		} catch (UnknownHostException e) {
 			System.out.println("Couldn't resolve address.");
 			e.printStackTrace();
@@ -42,12 +47,19 @@ public class OSCServerThing {
 		}
 	}
 	
-	public void sendPitch(float pitch) {
+	//bundles pitch and volume message, then sends it to pureData
+	public void sendPitch(float pitch, float vol) {
+		OSCBundle bundle = new OSCBundle(); 
 		OSCMessage routeMessage = new OSCMessage(pitchRoute);
+		OSCMessage routeMessage2 = new OSCMessage(volumeRoute);
 		routeMessage.addArgument(pitch);
+		routeMessage2.addArgument(vol);
+		bundle.addPacket(routeMessage);
+		bundle.addPacket(routeMessage2);
+		
 		try {
-			server.send(routeMessage);
-			//System.out.println("Sent pitch " + pitch);
+			server.send(bundle);
+			this.pitch = (int)pitch;
 		} catch (IOException e) {
 			System.out.println("Failed while sending");
 			e.printStackTrace();
