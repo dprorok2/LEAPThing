@@ -1,4 +1,4 @@
-LEAPThing
+LEAPHarp
 =========
 
-Messing around with LEAP
+Leap Harp project for UIUC Eng198 - Grand Challenges
